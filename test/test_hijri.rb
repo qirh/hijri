@@ -1,4 +1,4 @@
-require 'helper'
+require_relative 'helper'
 require 'hijri'
 
 class TestHijri < MiniTest::Unit::TestCase
