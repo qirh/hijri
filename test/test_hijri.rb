@@ -199,12 +199,4 @@ class TestHijri < MiniTest::Unit::TestCase
     gdate = Date.new(2017, 12, 31)
     assert_equal gdate, hdate.to_greo
   end
-
-  def test_conversion_edge_case
-    # this used to be an issue https://github.com/ecleel/hijri/issues/4
-    gdate = Date.new 2017, 9, 1
-    hdate = Hijri::Date.new 1438, 12, 9
-    assert_equal hdate, gdate.to_hijri
-    assert_equal Hijri::Date.new(1437, 12, 6), Date.new(2016, 9, 9).to_hijri
-  end
 end
