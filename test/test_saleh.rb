@@ -30,23 +30,25 @@ class TestHijri < MiniTest::Unit::TestCase
 
   def test_conversion_edge_case_3
     # this breaks too ^^
-    gdate = Date.new(2017, 12, 31)
+    gdate = Date.new(2013, 12, 31)
     hdate = Hijri::Date.new(1435, 2, 27)
     assert_equal hdate, gdate.to_hijri
     assert_equal gdate, hdate.to_greo
   end
 
-  def test_many_conversions
+  def test_plus_minus
     gdate = Date.new(2014, 1, 1)
     hdate = Hijri::Date.new(1435, 2, 28)
 
-    assert_equal gdate, hdate.to_greo
-    assert_equal hdate, gdate.to_hijri
+    (1..10000).each do |n|
+      assert_equal gdate-n, hdate.to_greo(-n)
+      assert_equal hdate-n, gdate.to_hijri(-n)
 
-    assert_equal gdate+1, hdate.to_greo(+1)
-    assert_equal hdate+1, gdate.to_hijri(+1)
+      assert_equal gdate, hdate.to_greo
+      assert_equal hdate, gdate.to_hijri
 
-    assert_equal gdate-1, hdate.to_greo(-1)
-    assert_equal hdate-1, gdate.to_hijri(-1)
+      assert_equal gdate+n, hdate.to_greo(+n)
+      assert_equal hdate+n, gdate.to_hijri(+n)
+    end
   end
 end
