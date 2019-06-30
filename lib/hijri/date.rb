@@ -85,6 +85,10 @@ module Hijri
       self
     end
 
+    def +(adjust)
+      self.to_greo(adjust).to_hijri()
+    end
+
     def valid_date?(year, month, day)
       return false unless (1..INFINITY).cover?(year)
       return false unless (1..12).cover?(month)
