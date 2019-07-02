@@ -44,6 +44,7 @@ class TestHijri < MiniTest::Unit::TestCase
     assert_equal hdate, gdate.to_hijri
 
     (1..5000).each do |n|
+      puts "#{n} #{gdate-n}, #{hdate.to_greo(-n)} -- #{hdate-n}, #{gdate.to_hijri(-n)}"
       assert_equal gdate-n, hdate.to_greo(-n)
       assert_equal hdate-n, gdate.to_hijri(-n)
 
