@@ -36,16 +36,16 @@ class TestHijri < MiniTest::Unit::TestCase
     assert_equal gdate, hdate.to_greo
   end
 
-  def test_plus_minus
+  def test_plus_and_minus
     gdate = Date.new(2014, 1, 1)
     hdate = Hijri::Date.new(1435, 2, 28)
 
-    (1..10000).each do |n|
+    assert_equal gdate, hdate.to_greo
+    assert_equal hdate, gdate.to_hijri
+
+    (1..5000).each do |n|
       assert_equal gdate-n, hdate.to_greo(-n)
       assert_equal hdate-n, gdate.to_hijri(-n)
-
-      assert_equal gdate, hdate.to_greo
-      assert_equal hdate, gdate.to_hijri
 
       assert_equal gdate+n, hdate.to_greo(+n)
       assert_equal hdate+n, gdate.to_hijri(+n)
